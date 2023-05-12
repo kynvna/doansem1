@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh muc san pham</title>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script src="./js/data.js"></script>
+    <link rel="stylesheet" href="./css/mystyle.css">
+</head>
+<body>
+    <input type="search" name="" id="">
+    <input type="text" placeholder="Tim kiem san pham" id="search">
+    <div id="content">
+        
+
+        
+    </div>
+    <script>
+        $(function(){
+            loadData();
+            $('#search').keyup(function(){
+                var value = $(this).val().toLowerCase();
+                
+                $("#content .sp").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            })
+        })
+
+        function loadData(){
+            console.log(product)
+
+            let s=''
+            $.each(product, function(i, v){
+                s+=`<div class="sp" data-id="${v.id}">
+                        <h1>${v.id}-${v.name}</h1>
+                        <p>Gia: ${v.price}</p>
+                        <img src="${v.img}" alt="">
+                       
+                    </div>`
+            } )
+            $('#content').html(s)
+            $('#content .sp').click(function(){
+               // alert('hi')
+                id = $(this).data('id')
+                localStorage.setItem('id', id)
+                window.location='detail.html'
+            })
+        }
+    </script>
+</body>
+</html>

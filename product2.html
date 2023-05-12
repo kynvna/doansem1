@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh muc san pham</title>
+    <script src="./js/jquery-3.6.4.min.js"></script>
+    <script src="./js/data.js"></script>
+    <link rel="stylesheet" href="./css/mystyle.css">
+    <style>
+        td img{height: 50px;}
+    </style>
+</head>
+<body>
+    <input type="search" name="" id="">
+    <input type="text" placeholder="Tim kiem san pham" id="search">
+    <button>SX theo gia tang</button>
+    <button>Sap xep theo gia Giam</button>
+    <div id="content">
+        
+
+        
+    </div>
+    <script>
+        $(function(){
+            loadData(product);
+            $('#search').keyup(function(){
+                var value = $(this).val().toLowerCase();
+                
+                $("#content .sp").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            })
+
+            $('button:nth(0)').click(function(){
+                product.sort( (a, b)=>a.price-b.price   )
+                loadData(product);
+            })
+
+            $('button:nth(1)').click(function(){
+                product.sort( (a, b)=>b.price-a.price   )
+                loadData(product);
+            })
+
+        })
+
+        function loadData(data){
+            console.log(product)
+
+            let s='<table>'
+            $.each(data, function(i, v){
+                s+=`<tr data-id="${v.id}">
+                        <td>${v.id}-${v.name}</td>
+                        <td>Gia: ${v.price}</td>
+                        <td> <img src="${v.img}" alt=""></td>
+                       
+                    </tr>`
+            } )
+            s+='</table>'
+            $('#content').html(s)
+           
+        }
+    </script>
+</body>
+</html>
