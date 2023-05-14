@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Persol layout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="./js/jquery-3.6.4.min.js" ></script>
+  
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      margin-top: 0px;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .banner {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-bottom: 0;
+      display: block;
+
+    }
+
+    .banner img {
+      height: 140px
+    }
+
+    .col-sm-3 p {
+      text-align: justify;
+    }
+
+    .col-sm-3 {
+      z-index: 1;
+    }
+
+    /* .col-sm-3:hover {
+      transform: scale(1.5);
+      background-color: bisque;
+      z-index: 2;
+    } */
+
+    .zoom {
+      transform: scale(1.5);
+      background-color: bisque;
+      z-index: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="banner">
+    <div class="col-sm-2 img">
+      <div class="text-center"><img src="./img/Persol logo1.jpg" alt=""></div>
+    </div>
+    <div class="col-sm-8 text-center">
+      <h1>Iconically Persol</h1>
+      <p>Discover the timeless style of new Persol collection</p>
+    </div>
+    <div class="col-sm-2 img">
+      <div class="text-center"><img src="./img/lens.jpg" alt="" style="max-width: 100%;"></div>
+    </div>
+  </div>
+  <div style="clear: both;"></div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Home</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#" id="mframes">Frames</a></li>
+          <li><a href="#" id="mlens">Lens</a></li>
+          <li><a href="#" id="mcontactlens">Contact Lens</a></li>
+          <li><a href="#" id="msunglasses" >Sunglasses</a></li>
+          <li><a href="#">Shop locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid bg-3 text-center">
+    <h2>What we have</h2><br>
+    <div class="row">
+      <div class="col-sm-3" id="frames">
+        <h3>Frames</h3>
+        <p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias, possimus labore. Blanditiis, sint
+          necessitatibus quidem quibusdam est iste iure fugit, exercitationem, ipsam error molestiae officia aut. </p>
+        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      </div>
+      <div class="col-sm-3" id="lens">
+        <h3>Lens</h3>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem ex voluptatibus, recusandae pariatur
+          nihil impedit adipisci vero, tempora aut ratione ipsum error enim tempore
+          nesciunt iusto!</p>
+        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      </div>
+      <div class="col-sm-3" id="contactlens">
+        <h3>Contact_Lens</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus mollitia, deserunt est error rerum qui,
+          alias laboriosam quam pariatur labore quidem accusamus ad omnis eos, tenetur blanditiis eligendi consequatur
+          vel.</p>
+        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      </div>
+      <div class="col-sm-3" id="sunglasses">
+        <h3>Sunglasses</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta laudantium vero earum, debitis nihil hic
+          dicta excepturi ipsam corrupti fugit dolorum vel. Iusto eum eaque eius necessitatibus delectus qui. A?</p>
+        <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      </div>
+    </div>
+  </div><br>
+
+  <!-- <div class="container-fluid bg-3 text-center">    
+  <div class="row">
+    <div class="col-sm-3">
+      <p>Some text..</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+      <p>Some text..</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3"> 
+      <p>Some text..</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+    <div class="col-sm-3">
+      <p>Some text..</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+    </div>
+  </div>
+</div><br>-->
+  <br>
+
+  <footer class="container-fluid text-center">
+    <ul class="nav navbar-nav">
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Geo_location</a></li>
+
+    </ul>
+  </footer>
+<script>
+    const mframes = document.getElementById('mframes');
+    const mlens = document.getElementById('mlens');
+    const mcontactlens = document.getElementById('mcontactlens');
+    const msunglasses = document.getElementById('msunglasses');
+    const frames = document.getElementById('frames');
+    const lens = document.getElementById('lens');
+    const contactlens = document.getElementById('contactlens');
+    const sunglasses = document.getElementById('sunglasses');
+    mframes.addEventListener('mouseover', function(){
+      frames.classList.add('zoom');
+    });
+
+    mframes.addEventListener('mouseout', function(){
+      frames.classList.remove('zoom');
+    });
+
+    mlens.addEventListener('mouseover', () => {
+      lens.classList.add('zoom');
+    });
+
+    mlens.addEventListener('mouseout', () => {
+      lens.classList.remove('zoom');
+    });
+
+    mcontactlens.addEventListener('mouseover', () => {
+      contactlens.classList.add('zoom');
+    });
+
+    mcontactlens.addEventListener('mouseout', () => {
+      contactlens.classList.remove('zoom');
+    });
+
+    msunglasses.addEventListener('mouseover', () => {
+      sunglasses.classList.add('zoom');
+    });
+
+    msunglasses.addEventListener('mouseout', () => {
+      sunglasses.classList.remove('zoom');
+    });
+  </script>
+</body>
+
+</html>
