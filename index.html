@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Persol layout</title>
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="./js/jquery-3.6.4.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="./js/function.js"></script>
+  <script src="./data/data.js"></script>
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      margin-top: 0px;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .banner {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-bottom: 0;
+      display: block;
+
+    }
+
+    .banner img {
+      height: 140px
+    }
+
+    .col-sm-3 p {
+      text-align: justify;
+    }
+
+    .col-sm-3 {
+      z-index: 1;
+    }
+
+    .zoom {
+      transform: scale(1.5);
+      background-color: bisque;
+      z-index: 2;
+    }
+
+    .ezoom {
+      transform: scale(1.25);
+      background-color: rgb(207, 196, 255);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .sp {
+      width: 250px;
+      height: 300px;
+      background-color: rgba(96, 87, 32, 0.982);
+      margin: 5px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .sp img {
+      width: 100%;
+      height: 260px;
+    }
+
+    .sp h4 {
+      color: white;
+    }
+
+    .sp .ad2cart {
+      position: absolute;
+      bottom: 0px;
+      background-color: rgba(191, 191, 107, 0.765);
+      width: 100%;
+    }
+
+    .col-sm-2 img {
+      border-radius: 50%;
+
+    }
+
+    #ticker-container {
+      height: 120px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: absolute;
+      margin-right: 5px;
+
+    }
+
+    .col-sm-6 {
+      background-image: url("./img/footer\ banner.jpg");
+      min-height: 130px;
+      width: 50%;
+      margin-top: -10px;
+    }
+
+    .productdetail {
+      border: 0px;
+      background-color: white;
+    }
+
+    #searchproducts {
+      margin-top: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="banner">
+    <div class="col-sm-2 img">
+      <div class="text-center"> <img src="./img/Persol logo1.jpg" alt=""></div>
+    </div>
+    <div class="col-sm-8 text-center">
+      <h1>Iconically Persol</h1>
+      <p>Discover the timeless style of new Persol collection</p>
+      <div> Visitors : <span id="count" style="color: red;">0 </span> </div>
+    </div>
+    <div class="col-sm-2 img">
+      <div class="text-center"><img src="./img/lens.jpg" alt="" style="max-width: 100%;"></div>
+    </div>
+
+  </div>
+  <div style="clear: both;"></div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" id="home">Home</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="left">
+          <li><a href="#" id="fr" data-id="fr">Frames</a></li>
+          <li><a href="#" id="le" data-id="le">Lens</a></li>
+          <li><a href="#" id="ct" data-id="ct">Contact Lens</a></li>
+          <li><a href="#" id="sg" data-id="sg">Sunglasses</a></li>
+          <li><a href="#" id="sl" data-id="sl">Shop locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="right">
+          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span id="incart">(0)</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="searchproducts">
+    <label for="products">Search products:</label>
+    <select name="products" id="products">
+      <option value="none" selected>None</option>
+      <option value="all">All products</option>
+      <option value="rb">Ray-Ban</option>
+      <option value="ed">Edmund</option>
+      <option value="sc">Schott</option>
+      <option value="pe">Persol</option>
+      <option value="ot">Others</option>
+    </select>
+  </div>
+  <div class="container-fluid bg-3 text-center">
+    <h2>What we have</h2><br>
+    <div id="content" class="row"></div>
+  </div><br>
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Product information</h4>
+        </div>
+        <div id="modal-body" class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Add to cart</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <footer class="container-fluid text-center">
+    <!-- <ul class="nav navbar-nav"> -->
+    <div class="col-sm-2 img" id="emailLink">
+      <div class="text-center"> <span style="color:blue;font-weight: bold;">Contact us</span> <br> Persol Eyeware <br>
+        102 Nguyen Dinh Chinh street, Phu Nhuan, HCMC
+        <br>Email: persol@accp2302.com
+        <br>Phone: +8499999999
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2014355048805!2d106.67575537379457!3d10.795878658837157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d677ca9663%3A0x80d711d9bcf5707f!2zMTAyIE5ndXnhu4VuIMSQw6xuaCBDaMOtbmgsIFBoxrDhu51uZyAxNSwgUGjDuiBOaHXhuq1uLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1684746891027!5m2!1svi!2s&output=svembed"
+        width="400" height="130" style="border:0;margin-top: -10px;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col-sm-6 text-right">
+      <div id="ticker-container"></div>
+    </div>
+  </footer>
+
+  <script>
+    $("#content").html(shome);
+    document.addEventListener('DOMContentLoaded', function () {
+      const mframes = document.getElementById('fr');
+      const mlens = document.getElementById('le');
+      const mcontactlens = document.getElementById('ct');
+      const msunglasses = document.getElementById('sg');
+      const frames = document.getElementById('frames');
+      const lens = document.getElementById('lens');
+      const contactlens = document.getElementById('contactlens');
+      const sunglasses = document.getElementById('sunglasses');
+      const emailLink = document.getElementById('emailLink');
+
+      mframes.addEventListener('mouseover', function () {
+        frames.classList.add('zoom');
+      });
+
+      mframes.addEventListener('mouseout', function () {
+        frames.classList.remove('zoom');
+      });
+
+      mlens.addEventListener('mouseover', () => {
+        lens.classList.add('zoom');
+      });
+
+      mlens.addEventListener('mouseout', () => {
+        lens.classList.remove('zoom');
+      });
+
+      mcontactlens.addEventListener('mouseover', () => {
+        contactlens.classList.add('zoom');
+      });
+
+      mcontactlens.addEventListener('mouseout', () => {
+        contactlens.classList.remove('zoom');
+      });
+
+      msunglasses.addEventListener('mouseover', () => {
+        sunglasses.classList.add('zoom');
+      });
+
+      msunglasses.addEventListener('mouseout', () => {
+        sunglasses.classList.remove('zoom');
+      });
+
+      emailLink.addEventListener('mouseover', () => {
+        emailLink.classList.add('ezoom');
+      });
+      emailLink.addEventListener('mouseout', () => {
+        emailLink.classList.remove('ezoom');
+      });
+    });
+  </script>
+
+  <script>
+    $(function () {
+      $('#left li a').click(function () {
+        var id = $(this).data('id')
+        console.log(id)
+        showProduct(filterProduct('ptype_id', id, dataProduct), 'dataProduct')
+        $("#products").val("none");
+      })
+      $('#incart').click(function () {
+        $('#modal-incart').modal('show')
+        loadCartData()
+        
+    })
+        
+      
+          $('#products').change(function () {
+        if ($('#products').find(":selected").val() == 'all') showProduct(dataProduct, 'dataProduct')
+          console.log($('#products').find(":selected").val())
+      })
+
+          $('#home').click(function () {
+            $("#content").html(shome);
+
+          location.reload();
+
+      })
+
+    });
+
+    var getBrandNameById = (brandId) => {
+      for (let i = 0; i < dataBrand.length; i++) {
+        if (dataBrand[i].brand_id === brandId) {
+          return dataBrand[i].brand_name;
+        }
+      }
+          return null; // Brand not found
+    }
+    var getPtypeNameById = (ptypeId) => {
+      for (let i = 0; i < dataPtype.length; i++) {
+        if (dataPtype[i].ptype_id === ptypeId) {
+          return dataPtype[i].ptype_name;
+        }
+      }
+          return null; // Brand not found
+    }
+    var TrueFalseYesNo = (a) => {
+      if (a) return "YES"
+          else return "NO"
+    }
+
+    //Ham hien thi mang arr san pham vao phan tu id= id
+    var showProduct = (arr, id) => {
+            let s = '';
+          $.each(arr, function (i, v) {
+
+            s += `
+      <div class="sp">
+        <h4>${v.name}</h4>
+        <img src="${v.img}" alt="">
+        <div class='productdetail'>
+          Price: ${v.price} &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="button" class="productdetail" data-toggle="modal" data-target="#modal-${v.id}">Detail...</button>
+        </div>
+        <div id="ad2cart" class='ad2cart' data-id='${v.id}'>Cart</div>
+      </div>
+     
+      <!-- Modal -->
+      <div class="modal fade" id="modal-${v.id}" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Product information</h4>
+            </div>
+            <div class="modal-body">
+              <div>Product name: ${v.name}</div>
+              <div>Product description: ${v.des}</div>
+              <div>Brand name: ${getBrandNameById(v.brand_id)}</div>
+              <div>Product type: ${getPtypeNameById(v.ptype_id)}</div>
+              <div>Price: ${v.price}</div>
+              <div>New product: ${TrueFalseYesNo(v.isNew)}</div>
+              <div>Best seller: ${TrueFalseYesNo(v.bestSeller)}</div>
+              <div>Product id: ${v.id}</div>
+              <img src="${v.img}" alt="">
+              <div><a href="./data/datasheet/${v.id}.docx" download="${v.id}.docx">Download datasheet</a></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      `;
+  
+      });
+          $("#content").html(s);
+          $('#products').change(function () {
+        if ($('#products').find(":selected").val() == 'rb') showProduct(filterProduct('brand_id', 'rb', arr), 'dataProduct')
+          if ($('#products').find(":selected").val() == 'ed') showProduct(filterProduct('brand_id', 'ed', arr), 'dataProduct')
+          if ($('#products').find(":selected").val() == 'sc') showProduct(filterProduct('brand_id', 'sc', arr), 'dataProduct')
+          if ($('#products').find(":selected").val() == 'pe') showProduct(filterProduct('brand_id', 'pe', arr), 'dataProduct')
+          if ($('#products').find(":selected").val() == 'ot') showProduct(filterProduct('brand_id', 'ot', arr), 'dataProduct')
+          if ($('#products').find(":selected").val() == 'none') location.reload();
+
+      })
+          $(function(){
+            $('.ad2cart').click(function () {
+              var id = $(this).data('id');
+              console.log(id);
+              ad2Cart(id);
+
+              var cart = localStorage.getItem('cartLocalStorage');
+              cart = JSON.parse(cart);
+              console.log(cart.length)
+              $("#incart").html(`(${cart.length})`);
+            });
+      })
+    }
+          $(function () {
+            $('#emailLink').on('click', function (event) {
+
+              var email = 'persol@accp2302.com';
+              var subject = 'Further information';
+              var emailBody = 'I want more information on your products';
+              window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + emailBody;
+            });
+    });
+
+  </script>
+
+  <script>
+    function loadCartData()
+    {
+      data = JSON.parse( localStorage.getItem('cartLocalStorage'))
+        console.log(data)
+        let s=`table class='table'> `
+        $.each(data, function (k, v){
+            s +=`<tr><td>${v.id}</td><td> ${v.name}</td><td> <a class=xoa data-id='${v.id}'>Xoa</a></td></tr>`
+        })
+      
+        s+='</table>'
+        $('#cartcontent').html(s)
+
+        $('#modal-incart a.xoa').click( function(){
+            id = $(this).data('id')
+            alert(id)
+            data = data.filter( x=>x.id != id)
+            localStorage.setItem('cartLocalStorage', JSON.stringify(data))
+            loadCartData()
+        })
+    }
+
+
+          $(document).ready(function () {
+            $('#incart').html( (JSON.parse(localStorage.getItem('cartLocalStorage'))).length )
+
+            function updateTicker() {
+              var currentDate = new Date();
+              var tickerText = "Hot deals on " + currentDate.toDateString();
+
+              // Update the content of the ticker container
+              $("#ticker-container").text(tickerText);
+
+              // Scroll the ticker horizontally
+
+
+              $("#ticker-container").animate({ right: '0px' }, 3000, 'linear', function () {
+                // Once the scrolling animation completes, call the updateTicker function again
+                $("#ticker-container").animate({ right: ($("div.col-sm-6").width() - 160) }, 3000, 'linear')
+                updateTicker();
+              });
+
+
+
+            }
+
+      // Start the ticker
+      updateTicker();
+    });
+  </script>
+  <script>
+          $(document).ready(function () {
+      // Check if the user count exists in localStorage
+      if (localStorage.getItem('userCount')) {
+        // Retrieve the existing count from localStorage
+        var count = parseInt(localStorage.getItem('userCount'));
+          updateCount(count);
+      } else {
+        // Initialize the count if it doesn't exist
+        var count = 0;
+          updateCount(count);
+      }
+
+          // Increment the count and update the display
+          function incrementCount() {
+            count++;
+          updateCount(count);
+      }
+
+          // Update the count display
+          function updateCount(count) {
+            $('#count').text(count);
+      }
+
+          // Save the count to localStorage before the user leaves the page
+          $(window).on('beforeunload', function () {
+            localStorage.setItem('userCount', count);
+      });
+
+          // Increment the count when the page loads
+          incrementCount();
+    });
+  </script>
+
+<div class="modal fade" id="modal-incart" role="dialog">
+  <div class="modal-dialog">
+  <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cart information</h4>
+      </div>
+      <div class="modal-body" id="cartcontent">
+       <table class="table">
+        <tr>
+          <td>Lorem, ipsum.</td>
+          <td>Deleniti, sint?</td>
+          <td>Id, eveniet?</td>
+          <td>Praesentium, ea?</td>
+          <td>Est, ex!</td>
+        </tr>
+        <tr>
+          <td>Lorem, ipsum.</td>
+          <td>Laborum, minima?</td>
+          <td>Minima, officia!</td>
+          <td>Nam, accusamus?</td>
+          <td>Deleniti, aut!</td>
+        </tr>
+        <tr>
+          <td>Lorem, ipsum.</td>
+          <td>Repellat, voluptates!</td>
+          <td>Voluptatibus, praesentium.</td>
+          <td>Molestiae, reprehenderit!</td>
+          <td>Ipsa, officia?</td>
+        </tr>
+       </table>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Confirm cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
