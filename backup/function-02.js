@@ -8,18 +8,9 @@ Ham return mang moi
 */
 function filterProduct(column, value, data)
 {
-    
-    if (column=='id')
-    {
-        return data.filter( item=>item.id == value )
-    }
     if (column=='brand_id')
     {
         return data.filter( item=>item.brand_id == value )
-    }
-    if (column=='ptype_id')
-    {
-        return data.filter( item=>item.ptype_id == value )
     }
 
     if (column=='name')
@@ -36,8 +27,8 @@ function filterProduct(column, value, data)
     {
         return data.filter(item => item.isNew=== value )
     }
-   
-       
+    if (column=='id')
+        return data.filter(item => item.id== value )
 }
 
 
@@ -62,40 +53,17 @@ function sortBy(column, type, data)
 //tim kiem san pham theo id
 function ad2Cart(id)
 {
-  
-    let data = filterProduct('id', id, dataProduct);//lay 1 san pham de save vao cart
-    console.log(data)
-    // alert(data.length);
-    // data[0].quantity=1;
-    
-    let cart = JSON.parse(localStorage.getItem('cartLocalStorage')) || [];//string
-    //  cart =  JSON.parse(cart)
-    // console.log(cart)
-    
+    let data = filterProduct('id', id, dataProduct)
+    let cart = localStorage.getItem('cartLocalStorage');//string
     // cart=null
-    if (cart)
-    { 
-        //co data cu
-        // cart =  JSON.parse(cart);//convert string to object
+    if (cart != null){ //co data cu
+        cart =  JSON.parse(cart);//convert string to object
         console.log(cart)
-        let datacart=filterProduct('id', id, cart);
-        console.log(datacart)
-        console.log(datacart.length)
-        if(datacart.length!=0) {
-           var qt= (datacart[0].quantity); 
-           qt++;
-           datacart[0].quantity=qt;//.toString();
-           console.log(datacart[0].quantity)
-            }          
-        else {data[0].quantity=1;cart.push(data[0])}               
-                            
-    }                    
-    else {cart=data; cart[0].quantity=1}    
-    console.log(cart)
-    
+        cart.push(data[0])
+    }
+    else cart= data
 
-   // console.log('id:',  cart)
+    console.log(id,  cart)
     localStorage.setItem('cartLocalStorage', JSON.stringify(cart))
-    
 }
 

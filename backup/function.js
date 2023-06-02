@@ -82,9 +82,9 @@ function ad2Cart(id)
         console.log(datacart)
         console.log(datacart.length)
         if(datacart.length!=0) {
-           var qt= (datacart[0].quantity); 
+           var qt= parseInt(datacart[0].quantity); 
            qt++;
-           datacart[0].quantity=qt;//.toString();
+           datacart[0].quantity=qt.toString();
            console.log(datacart[0].quantity)
             }          
         else {data[0].quantity=1;cart.push(data[0])}               
@@ -96,6 +96,5 @@ function ad2Cart(id)
 
    // console.log('id:',  cart)
     localStorage.setItem('cartLocalStorage', JSON.stringify(cart))
-    
 }
 

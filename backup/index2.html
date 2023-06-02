@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Persol layout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="./js/jquery-3.6.4.min.js"></script>
+  <script src="./js/function-02.js"></script>
+  <script src="./data/data.js"></script>
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      margin-top: 0px;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
+
+    .banner {
+      padding-top: 0px;
+      padding-bottom: 0px;
+      margin-bottom: 0;
+      display: block;
+
+    }
+
+    .banner img {
+      height: 140px
+    }
+
+    .col-sm-3 p {
+      text-align: justify;
+    }
+
+    .col-sm-3 {
+      z-index: 1;
+    }
+
+    .zoom {
+      transform: scale(1.5);
+      background-color: bisque;
+      z-index: 2;
+    }
+
+    .ezoom {
+      transform: scale(1.25);
+      background-color: rgb(207, 196, 255);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .sp {
+      width: 250px;
+      height: 300px;
+      background-color: aqua;
+      margin: 5px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .sp img {
+      width: 100%;
+      height: 260px;
+    }
+
+    .sp h2 {
+      height: 50px;
+    }
+
+    .sp .ad2cart {
+      position: absolute;
+      bottom: 0px;
+      background-color: yellow;
+      width: 100%;
+    }
+
+    .col-sm-2 img {
+      border-radius: 50%;
+
+    }
+
+    #ticker-container {
+      height: 120px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: absolute;
+      margin-right: 5px;
+
+    }
+
+    .col-sm-6 {
+      background-image: url("./img/footer\ banner.jpg");
+      min-height: 130px;
+      margin-top: -10px;
+    }
+
+    #searchproducts {
+      margin-top: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="banner">
+    <div class="col-sm-2 img">
+      <div class="text-center"><img src="./img/Persol logo1.jpg" alt=""></div>
+    </div>
+    <div class="col-sm-8 text-center">
+      <h1>Iconically Persol</h1>
+      <p>Discover the timeless style of new Persol collection</p>
+    </div>
+    <div class="col-sm-2 img">
+      <div class="text-center"><img src="./img/lens.jpg" alt="" style="max-width: 100%;"></div>
+    </div>
+
+  </div>
+  <div style="clear: both;"></div>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" id="home">Home</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav" id="left">
+          <li><a href="#" id="fr" data-id="fr">Frames</a></li>
+          <li><a href="#" id="le" data-id="le">Lens</a></li>
+          <li><a href="#" id="ct" data-id="ct">Contact Lens</a></li>
+          <li><a href="#" id="sg" data-id="sg">Sunglasses</a></li>
+          <li><a href="#" id="sl" data-id="sl">Shop locations</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right" id="right">
+          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="searchproducts">
+    <label for="products">Search products:</label>
+    <select name="products" id="products">
+      <option value="none" selected>None</option>
+      <option value="all">All products</option>
+      <option value="rb">Ray-Ban</option>
+      <option value="ed">Edmund</option>
+      <option value="sc">Schott</option>
+      <option value="pe">Persol</option>
+      <option value="ot">Others</option>
+    </select>
+  </div>
+  <div class="container-fluid bg-3 text-center">
+    <h2>What we have</h2><br>
+    <div id="content" class="row"></div>
+  </div><br>
+
+  <footer class="container-fluid text-center">
+    <!-- <ul class="nav navbar-nav"> -->
+    <div class="col-sm-2 img" id="emailLink">
+      <div class="text-center"> <span style="color:blue;font-weight: bold;">Contact us</span> <br> Persol Eyeware <br>
+        102 Nguyen Dinh Chinh street, Phu Nhuan, HCMC
+        <br>Email: persol@accp.com
+        <br>Phone: +8499999999
+      </div>
+    </div>
+    <div class="col-sm-4 text-center">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2014355048805!2d106.67575537379457!3d10.795878658837157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d677ca9663%3A0x80d711d9bcf5707f!2zMTAyIE5ndXnhu4VuIMSQw6xuaCBDaMOtbmgsIFBoxrDhu51uZyAxNSwgUGjDuiBOaHXhuq1uLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1684746891027!5m2!1svi!2s"
+        width="400" height="130" style="border:0;margin-top: -10px;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="col-sm-6 text-right">
+      <div id="ticker-container"></div>
+    </div>
+  </footer>
+
+  <script>
+    $("#content").html(shome);
+    document.addEventListener('DOMContentLoaded', function () {
+      const mframes = document.getElementById('fr');
+      const mlens = document.getElementById('le');
+      const mcontactlens = document.getElementById('ct');
+      const msunglasses = document.getElementById('sg');
+      const frames = document.getElementById('frames');
+      const lens = document.getElementById('lens');
+      const contactlens = document.getElementById('contactlens');
+      const sunglasses = document.getElementById('sunglasses');
+      const emailLink = document.getElementById('emailLink');
+
+      mframes.addEventListener('mouseover', function () {
+        frames.classList.add('zoom');
+      });
+
+      mframes.addEventListener('mouseout', function () {
+        frames.classList.remove('zoom');
+      });
+
+      mlens.addEventListener('mouseover', () => {
+        lens.classList.add('zoom');
+      });
+
+      mlens.addEventListener('mouseout', () => {
+        lens.classList.remove('zoom');
+      });
+
+      mcontactlens.addEventListener('mouseover', () => {
+        contactlens.classList.add('zoom');
+      });
+
+      mcontactlens.addEventListener('mouseout', () => {
+        contactlens.classList.remove('zoom');
+      });
+
+      msunglasses.addEventListener('mouseover', () => {
+        sunglasses.classList.add('zoom');
+      });
+
+      msunglasses.addEventListener('mouseout', () => {
+        sunglasses.classList.remove('zoom');
+      });
+
+      emailLink.addEventListener('mouseover', () => {
+        emailLink.classList.add('ezoom');
+      });
+      emailLink.addEventListener('mouseout', () => {
+        emailLink.classList.remove('ezoom');
+      });
+    });
+  </script>
+
+  <script>
+    $(function () {
+      $('#left li a').click(function () {
+        var id = $(this).data('id')
+        console.log(id)
+        showProduct(filterProduct('ptype_id', id, dataProduct), 'dataProduct')
+      })
+
+      $('#products').change(function() {
+      if($('#products').find(":selected").val()=='all') showProduct(dataProduct, 'dataProduct')
+      console.log($('#products').find(":selected").val())
+      })
+
+      $('#home').click(function () {
+        $("#content").html(shome);
+
+        location.reload();
+
+      })
+
+    });
+
+    //Ham hien thi mang arr san pham vao phan tu id= id
+    var showProduct = (arr, id) => {
+      let s = '';
+      $.each(arr, function (i, v) {
+        s += ` <div class="sp">
+                            
+            <h4>${v.name}</h4>
+                            <img src="${v.img}" alt="">
+                            <div>Price: ${v.price}  &nbsp;&nbsp;&nbsp;&nbsp; <a href="">Detail</a></div>
+                            <div class='ad2cart' data-id='${v.id}'>Cart</div>
+                        </div>
+                        `
+      })
+
+      $("#content").html(s);
+    }
+    $(function () {
+      $('#emailLink').on('click', function (event) {
+
+        var email = 'persol@accp2302.com';
+        var subject = 'Further information';
+        var emailBody = 'I want more information on your products';
+        window.location = 'mailto:' + email + '?subject=' + subject + '&body=' + emailBody;
+      });
+    });
+
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      function updateTicker() {
+        var currentDate = new Date();
+        var tickerText = "Today is " + currentDate.toDateString();
+
+        // Update the content of the ticker container
+        $("#ticker-container").text(tickerText);
+
+        // Scroll the ticker horizontally
+
+
+        $("#ticker-container").animate({ right: '0px' }, 3000, 'linear', function () {
+          // Once the scrolling animation completes, call the updateTicker function again
+          $("#ticker-container").animate({ right: '560px' }, 3000, 'linear')
+          updateTicker();
+        });
+
+
+
+      }
+
+      // Start the ticker
+      updateTicker();
+    });
+  </script>
+
+</body>
+
+</html>

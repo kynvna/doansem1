@@ -6,13 +6,12 @@
   <meta charset="utf-8">
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="./js/jquery-3.6.4.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="./js/function.js"></script>
+  <script src="./js/function-02.js"></script>
   <script src="./data/data.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
@@ -106,10 +105,8 @@
     .col-sm-6 {
       background-image: url("./img/footer\ banner.jpg");
       min-height: 130px;
-      height: 100%;
+      width: 50%;
       margin-top: -10px;
-      background-size: cover;
-
     }
 
     .productdetail {
@@ -119,13 +116,6 @@
 
     #searchproducts {
       margin-top: 5px;
-    }
-
-    /* #contact-form {
-      display: none;
-    } */
-    .hide {
-      display: none;
     }
   </style>
 
@@ -221,7 +211,7 @@
     <div class="col-sm-4 text-center">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2014355048805!2d106.67575537379457!3d10.795878658837157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528d677ca9663%3A0x80d711d9bcf5707f!2zMTAyIE5ndXnhu4VuIMSQw6xuaCBDaMOtbmgsIFBoxrDhu51uZyAxNSwgUGjDuiBOaHXhuq1uLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1684746891027!5m2!1svi!2s&output=svembed"
-        width="500" height="120" style="border:0;margin-top: -10px;" allowfullscreen="" loading="lazy"
+        width="400" height="130" style="border:0;margin-top: -10px;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="col-sm-6 text-right">
@@ -287,7 +277,7 @@
     $(function () {
       $('#left li a').click(function () {
         var id = $(this).data('id')
-        // console.log(id)
+        console.log(id)
         showProduct(filterProduct('ptype_id', id, dataProduct), 'dataProduct')
         $("#products").val("none");
       })
@@ -300,7 +290,7 @@
 
       $('#products').change(function () {
         if ($('#products').find(":selected").val() == 'all') showProduct(dataProduct, 'dataProduct')
-        // console.log($('#products').find(":selected").val())
+        console.log($('#products').find(":selected").val())
       })
 
       $('#home').click(function () {
@@ -371,11 +361,10 @@
               <div><a href="./data/datasheet/${v.id}.docx" download="${v.id}.docx">Download datasheet</a></div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ad2Cart(${v.id})">Add to cart</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Add to cart</button>
             </div>
           </div>
         </div>
-        
       </div>
       `;
 
@@ -398,19 +387,9 @@
 
           var cart = localStorage.getItem('cartLocalStorage');
           cart = JSON.parse(cart);
-          // console.log(cart.length)
+          console.log(cart.length)
           $("#incart").html(`(${cart.length})`);
         });
-        // $('.modal-footer button').click(function () {
-        //   var id = $(this).data('id');
-        //   console.log(id);
-        //   ad2Cart(id);
-
-        //   var cart = localStorage.getItem('cartLocalStorage');
-        //   cart = JSON.parse(cart);
-        //   // console.log(cart.length)
-        //   $("#incart").html(`(${cart.length})`);
-        // });
       })
     }
     $(function () {
@@ -428,29 +407,13 @@
   <script>
     function loadCartData() {
       data = JSON.parse(localStorage.getItem('cartLocalStorage'))
-
-      // console.log(data)
-      let s = `<table class='table table-hover'>
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Quantity</th>
-        <th>Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      
-    `
+      console.log(data)
+      let s = `table class='table'> `
       $.each(data, function (k, v) {
-
-        s += `
-        <tr><td>${v.id}</td><td> ${v.name}</td><td> <img style="width: 40px; height: 20px;" src="${v.img}" alt=""></td><td> ${v.quantity} </td><td> <a class=xoa data-id='${v.id}'>Remove</a></td></tr>
-        `
-
+        s += `<tr><td>${v.id}</td><td> ${v.name}</td><td> <a class=xoa data-id='${v.id}'>Xoa</a></td></tr>`
       })
-      s += '</tbody></table>'
+
+      s += '</table>'
       $('#cartcontent').html(s)
 
       $('#modal-incart a.xoa').click(function () {
@@ -458,16 +421,13 @@
         alert(id)
         data = data.filter(x => x.id != id)
         localStorage.setItem('cartLocalStorage', JSON.stringify(data))
-
         loadCartData()
-
       })
     }
 
 
     $(document).ready(function () {
-      let n = localStorage.getItem('cartLocalStorage') ? JSON.parse(localStorage.getItem('cartLocalStorage')).length : 0;
-      $('#incart').html('(' + n + ')')
+      $('#incart').html((JSON.parse(localStorage.getItem('cartLocalStorage'))).length)
 
       function updateTicker() {
         var currentDate = new Date();
@@ -481,7 +441,7 @@
 
         $("#ticker-container").animate({ right: '0px' }, 3000, 'linear', function () {
           // Once the scrolling animation completes, call the updateTicker function again
-          $("#ticker-container").animate({ right: ($("div.col-sm-6").width() - 170) }, 3000, 'linear')
+          $("#ticker-container").animate({ right: ($("div.col-sm-6").width() - 160) }, 3000, 'linear')
           updateTicker();
         });
 
@@ -536,89 +496,38 @@
           <h4 class="modal-title">Cart information</h4>
         </div>
         <div class="modal-body" id="cartcontent">
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal" onclick="f1()">Confirm cart</button>
+          <table class="table">
+            <tr>
+              <td>Lorem, ipsum.</td>
+              <td>Deleniti, sint?</td>
+              <td>Id, eveniet?</td>
+              <td>Praesentium, ea?</td>
+              <td>Est, ex!</td>
+            </tr>
+            <tr>
+              <td>Lorem, ipsum.</td>
+              <td>Laborum, minima?</td>
+              <td>Minima, officia!</td>
+              <td>Nam, accusamus?</td>
+              <td>Deleniti, aut!</td>
+            </tr>
+            <tr>
+              <td>Lorem, ipsum.</td>
+              <td>Repellat, voluptates!</td>
+              <td>Voluptatibus, praesentium.</td>
+              <td>Molestiae, reprehenderit!</td>
+              <td>Ipsa, officia?</td>
+            </tr>
+          </table>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Continue shopping</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Confirm cart</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script type="text/javascript">
 
-    (function () {
-      // https://dashboard.emailjs.com/admin/account
-      emailjs.init('td7QvWTfhcNY214vt');
-    })();
-  </script>
-  <script>
-    function f1() {
-      alert('Please scroll down to fill in billing information and submit!');
-      // $('#modal-incart .modal-footer .btn.btn-default[data-dismiss="modal"]:last').click(function () { 
-      // $('#modal-incart').modal('hide')
-      $('#contact-form').removeClass('hide');
-      document.getElementById('contact-form').addEventListener('submit', function (event) {
-        event.preventDefault();
-        obj = {
-          user_name: $('#contact-form #user_name').val(),
-          contact_number: $('#contact-form #contact_number').val(),
-          user_email: $('#contact-form #user_email').val(),
-          message: $('#cartcontent').html(),
-        }
-        emailjs.send('service_wpblpp5', 'template_ow1h4lw', obj)
-          .then(function () {
-            console.log('SUCCESS!');
-          }, function (error) {
-            console.log('FAILED...', error);
-          });
-      });
-            
-      // console.log(cartcontent)
-    };
-
-  </script>
-  <hr>
-  <div id="contact-form"class="container, hide" >
-    <br>
-    <br>
-        
-    <h2>Submit order</h2>
-    <form  class="form-horizontal" action="/action_page.php" >
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="email">Email:</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Name:</label>
-        <div class="col-sm-10">
-          <input type="name" class="form-control" id="name" placeholder="Enter your name" name="name">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" for="phonenumber">Phone number:</label>
-        <div class="col-sm-10">
-          <input type="name" class="form-control" id="phone" placeholder="Enter your phone number" name="phone">
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default" onclick="hidesubmitform()">Submit</button>
-        </div>
-      </div>
-    </form>
-  </div>
-  <script>
-    function hidesubmitform(){
-      $('#contact-form').addClass('hide'); 
-    }
-  </script>
-  <br>
-  <br>
-  <br>
 </body>
 
 </html>
